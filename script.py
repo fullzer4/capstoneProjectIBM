@@ -38,6 +38,7 @@ class CustomDataset(Dataset):
             self.Y = Y[30000:]
 
         self.transform = transforms.Compose([
+            transforms.Resize((224, 224)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
@@ -53,16 +54,6 @@ class CustomDataset(Dataset):
 
 train_dataset = CustomDataset(train=True)
 val_dataset = CustomDataset(train=False)
-
-image, Y = val_dataset[15]
-imshow(image.permute(1,2,0))
-print("Label: ", Y)
-plt.show()
-
-image, Y = val_dataset[102]
-imshow(image.permute(1,2,0))
-print("Label: ", Y)
-plt.show()
 
 class SoftmaxModel(nn.Module):
 
