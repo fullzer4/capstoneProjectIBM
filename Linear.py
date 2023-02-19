@@ -84,10 +84,12 @@ num_epochs = 5
 best_val_acc = 0.0
 
 for epoch in range(num_epochs):
+    print("start train")
     model.train()
     train_loss = 0.0
     train_correct = 0
     for inputs, labels in train_loader:
+        print("Epoch: {}".format(epoch))
         optimizer.zero_grad()
         outputs = model(inputs)
         loss = loss_fn(outputs, labels)
